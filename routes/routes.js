@@ -1,6 +1,5 @@
-import express from 'express'
-
-const app = express();
+import express from 'express';
+import { userController } from '../controllers/user.controller.js';
 
 export class Routes {
 
@@ -9,6 +8,9 @@ export class Routes {
         app.get( '/', ( req, res ) => {
             res.send( "Hola Mundo!" );
         });
+
+        app.post('/say-hello', userController.sayHello);
+        app.post('/get-users', userController.getUsers);
 
         app.post('/data', (req, res) => {
             const data = req.body;
