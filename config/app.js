@@ -1,7 +1,9 @@
 import express from 'express';
+import http from 'http';
 import dotenv from 'dotenv';
 import { Routes } from '../routes/routes.js';
 import { Database } from '../config/database.js';
+import { SocketIo } from '../socket/socket.io.js'
 
 // initialize configuration
 dotenv.config();
@@ -12,6 +14,8 @@ class App {
     routes = new Routes();
     db = new Database();
 
+    socket = new SocketIo();
+
     constructor() {
         this.initializeApp();
     }
@@ -21,6 +25,7 @@ class App {
         this.config();
         await this.database()
         this.routes.routes(this.app);
+        this.socket.startSocket(this.app)
     }
 
     config() {
