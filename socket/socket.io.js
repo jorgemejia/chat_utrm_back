@@ -24,7 +24,7 @@ export class SocketIo {
 
                await UserModel.update({socket_id: socket.id, online: true }, { where: { id: user.id }, logging: console.log });
 
-               const onlineUsers = await UserModel.findAll({where: { online: true, id: { [Op.ne]: user.id } }, logging: console.log });
+               const onlineUsers = await UserModel.findAll({where: { online: true }, logging: console.log });
 
                this.io.emit('new-user-online', onlineUsers);
            });
