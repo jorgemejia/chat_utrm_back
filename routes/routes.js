@@ -14,6 +14,9 @@ export class Routes {
         app.post('/api/login', userController.getUsers);
         app.post('/api/create-user', userController.createUser);
 
+        app.post('/api/load-conversation', userController.loadConversation);
+        app.post('/api/save-message', userController.saveMessage);
+
 
         app.post('/data', (req, res) => {
             const data = req.body;
